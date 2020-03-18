@@ -1,0 +1,51 @@
+<div class = "container">
+
+<h2>Vous etes sur la page du gossip n°<%= @gossip.id %> <%= link_to "Edit gossip", edit_gossip_path(@gossip.id), class: "btn btn-warning" %> <%= link_to 'Clique pour détruire', @gossip, method: :delete, class: "btn btn-danger" %></h2> </br>
+
+<h4>Createur du gossip => <%= @gossip.user.name %></h4></br>
+<h4>Titre du gossip => <%= @gossip.title %></h4></br>
+<h4>Contenue du gossip => <%= @gossip.content %></h4></br>
+
+<h4>Revenir à la page <%= link_to "index", gossips_path, class: "btn btn-primary" %> des gossips </h4>
+
+<h2 class="text-primary">Commentaire</h2>
+
+
+
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Content</th>
+      <th scope="col">User</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @gossip.comments.each do |c| %>
+    <tr>
+      <td><%= c.content %></td>
+      <td><%= c.user.name %></td>
+      <td><%= link_to "Edit", edit_gossip_comment_path(@gossip.id, c.id), class: "btn btn-success" %></td>
+      <td><%= link_to 'Supp', gossip_comment_path(@gossip.id, c.id), method: :delete, class: "btn btn-danger" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<h3 class = "text-primary">New Comment</h3>
+
+<%=form_with model: @comment, url: gossip_comments_path(@gossip.id) do |c| %>
+
+	<p>Content</p>
+	<%= c.text_field :content, class: "form-control" %></br>
+	<p>User_id</p>
+	<%= c.number_field :user_id, in: 1..@user_number, class: "form-control" %></br>
+	<p>Gossip_id</p>
+	<%= c.number_field :gossip_id, in: @gossip.id..@gossip.id, class: "form-control" %></br>
+
+	</br><%= c.submit "New comment", class: "btn btn-primary"%></br>
+
+
+<% end %>
+	
+</div>
+</br><p>Franklin Hyriol</p>

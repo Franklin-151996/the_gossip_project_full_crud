@@ -1,0 +1,19 @@
+<div class="container">
+
+<h3 class = "text-primary">Edit Comment</h3>
+
+<%=form_with model: @comment, url: gossip_comment_path(@gossip.id, @comment.id) do |c| %>
+
+	<p>Content</p>
+	<%= c.text_field :content, class: "form-control" %></br>
+	<p>User_id</p>
+	<%= c.number_field :user_id, in: 1..@user_number, class: "form-control" %></br>
+	<p>Gossip_id</p>
+	<%= c.number_field :gossip_id, in: @gossip.id..@gossip.id, class: "form-control" %></br>
+
+	</br><%= c.submit "Update comment", class: "btn btn-primary"%></br>
+
+
+<% end %>
+
+</div>

@@ -1,0 +1,22 @@
+</br>
+<table class="table table-dark">
+  <thead>
+    <tr>
+      <th scope="col">Title</th>
+      <th scope="col">Content</th>
+      <th scope="col">User</th>
+      <th scope="col">Comment</th>
+    </tr>
+  </thead>
+  <tbody>
+  	<% @gossips.each do |g| %>
+    <tr>
+      <td><%= g.title %></td>
+      <td><%= g.content %></td>
+      <td><%= g.user.name %></td>
+      <td><%= g.comments.count %></td>
+      <td><%= link_to "Page gossip", gossip_path(g.id), class: "btn btn-primary" %></td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
