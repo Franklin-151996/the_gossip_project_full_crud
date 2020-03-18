@@ -37,7 +37,7 @@ class GossipsController < ApplicationController
 		if param[:title] != "" && param[:content] != "" && param[:user_id] != ""
 			edit_gossip = accepte
 			@gossip.update(edit_gossip)
-			redirect_to(gossips_path)
+			redirect_to(gossip_path(@gossip.id))
 		else
 			redirect_to(edit_gossip_path(@gossip.id))
 		end
